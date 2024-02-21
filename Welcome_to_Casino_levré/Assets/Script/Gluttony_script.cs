@@ -5,7 +5,7 @@ using UnityEngine;
 public class Gluttony_script : MonoBehaviour
 {
     [SerializeField]
-    public Transform player;
+    Transform player;
 
     [SerializeField]
     float agroRange;
@@ -15,6 +15,7 @@ public class Gluttony_script : MonoBehaviour
 
     Rigidbody2D rb;
     Animator animator;
+    private CapsuleCollider2D coll2D;
 
     public int health;
     public int degatdumonstre;
@@ -29,6 +30,7 @@ public class Gluttony_script : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        coll2D = GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
@@ -78,6 +80,8 @@ public class Gluttony_script : MonoBehaviour
 
     public IEnumerator death()
     {
+        coll2D.enabled = false;
+        rb.isKinematic = true;
         ismoving = false;
         isattacking = true;
         animator.Play("Gluttony_mort");

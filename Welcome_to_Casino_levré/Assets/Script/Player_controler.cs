@@ -8,14 +8,14 @@ public class Player_controler: MonoBehaviour
     public Animator animator;
     public Transform groundCheck;
 
-    public CapsuleCollider2D Playercollider;
+    public BoxCollider2D Playercollider;
 
     public float maxSpeed;
     public float jumpSpeed;
 
     
-    public bool isAttacking = false;
-    public bool ismoving = false;
+    private bool isAttacking = false;
+    private bool ismoving = false;
     public bool invulnerable = false;
 
     bool isGrounded;
@@ -66,6 +66,8 @@ public class Player_controler: MonoBehaviour
             {
                 Playerdeath();
             }
+
+
         }
         
 

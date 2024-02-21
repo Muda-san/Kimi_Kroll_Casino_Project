@@ -15,6 +15,7 @@ public class Sloth_script : MonoBehaviour
 
     Rigidbody2D rb;
     Animator animator;
+    private CapsuleCollider2D coll2D;
 
     public int health;
     public int degatdumonstre;
@@ -29,6 +30,7 @@ public class Sloth_script : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        coll2D = GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
@@ -80,6 +82,8 @@ public class Sloth_script : MonoBehaviour
 
     public IEnumerator death()
     {
+        coll2D.enabled = false;
+        rb.isKinematic = true;
         ismoving = false;
         isattacking = true;
         animator.Play("Sloth_mort");
