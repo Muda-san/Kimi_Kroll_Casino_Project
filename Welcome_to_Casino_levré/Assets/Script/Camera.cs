@@ -18,11 +18,19 @@ public class Camera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, player.transform.position + posOffset, ref velocity, timeOffset);
+        
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.position -= Vector3.up * 50 * Time.deltaTime;
+            transform.position = Vector3.SmoothDamp(transform.position, player.transform.position + posOffset + new Vector3(0,-8,0), ref velocity, timeOffset);
+        }
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, player.transform.position + posOffset + new Vector3(0, 5, 0), ref velocity, timeOffset);
+        }
+        else
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, player.transform.position + posOffset, ref velocity, timeOffset);
         }
 
     }

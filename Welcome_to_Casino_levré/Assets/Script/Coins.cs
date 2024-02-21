@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 using TMPro;
-using System.Collections;
-
 public class Coins : MonoBehaviour
 {
     public static int Jeton = 0;
     public TextMeshProUGUI textCoins;
+    private AudioSource ads;
+
+    private void Start()
+    {
+        ads = GetComponent<AudioSource>();
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -14,16 +19,10 @@ public class Coins : MonoBehaviour
             print("we have collected an item");
             Jeton++;
             textCoins.text = Jeton.ToString();
-            StartCoroutine(son(collision));
+            ads.Play();
+            Destroy(collision.gameObject);
         }
 
 
-    }
-    public IEnumerator son(Collider2D collision)
-    {
-        AudioSource Audios = collision.gameObject.GetComponent<AudioSource>();
-        Audios.Play();
-        yield return new WaitForSeconds(0.2f);
-        Destroy(collision.gameObject);
     }
 }
