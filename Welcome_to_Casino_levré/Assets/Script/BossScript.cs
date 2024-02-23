@@ -10,10 +10,11 @@ public class BossScript : MonoBehaviour
     public Transform BossShadow;
     public Transform player;
 
-    public Animator animator;
+    private Animator animator;
 
     Rigidbody2D rb;
     SpriteRenderer spriterdr;
+    private CapsuleCollider2D capp2D;
 
     public static bool bossIsspawn = false;
     public static bool bossDeafeated = false;
@@ -28,6 +29,7 @@ public class BossScript : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         spriterdr = GetComponent<SpriteRenderer>();
+        capp2D = GetComponent<CapsuleCollider2D>();
     }
 
     private void Awake()
@@ -59,6 +61,8 @@ public class BossScript : MonoBehaviour
         {
             isDying = true;
             isOnGround = false;
+            capp2D.enabled = false;
+            rb.isKinematic = true;
             StartCoroutine(MortMechant());
            
         }
@@ -66,6 +70,7 @@ public class BossScript : MonoBehaviour
 
     public IEnumerator MortMechant()
     {
+
         animator.Play("Greed_mort");
 
         yield return new WaitForSeconds(2f);

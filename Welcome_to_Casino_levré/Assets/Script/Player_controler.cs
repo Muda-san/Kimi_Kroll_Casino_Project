@@ -12,6 +12,8 @@ public class Player_controler: MonoBehaviour
 
     public float maxSpeed;
     public float jumpSpeed;
+    private float _MAXSPEED;
+    private float _JUMPSPEED;
 
     
     private bool isAttacking = false;
@@ -47,6 +49,10 @@ public class Player_controler: MonoBehaviour
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
             attackHitBox.SetActive(false);
+
+
+        _MAXSPEED = maxSpeed;
+        _JUMPSPEED = jumpSpeed;
 
         }
         //==========================================================
@@ -175,5 +181,12 @@ public class Player_controler: MonoBehaviour
 
     }
 
+    public void PlayerStart()
+    {
+        Playercollider.enabled = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        maxSpeed = _MAXSPEED;
+        jumpSpeed = _JUMPSPEED;
+    }
 
 }

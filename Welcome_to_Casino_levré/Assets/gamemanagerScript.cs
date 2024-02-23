@@ -4,6 +4,20 @@ public class gamemanagerScript : MonoBehaviour
 {
     public GameObject winscreen;
 
+    public static gamemanagerScript instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("Il y a plus d'une instance de GameManager dans la scène");
+            return;
+        }
+
+        instance = this;
+    }
+
+
     public void Start()
     {
         BossScript.bossDeafeated = false;
